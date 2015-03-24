@@ -11,6 +11,7 @@ public:
         // f[i][j] = max (f[i - 1][j], f[i - 1][j - A[i - 1] ] + v[i - 1]] 
         // f[0][j] = 0
         // f[i][0] = 0
+        
         if (m <= 0 || A.size() != V.size() || A.size() == 0)
             return 0;
         int len = A.size();
