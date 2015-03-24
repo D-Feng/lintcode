@@ -5,6 +5,7 @@ public:
      * @param A: Given n items with size A[i]
      * @return: The maximum size
      */
+     // the space complex can be optimized.
     int backPack(int m, vector<int> A) {
         // write your code here
         if (A.empty() || m <= 0)
