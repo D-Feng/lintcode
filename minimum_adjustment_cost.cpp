@@ -18,7 +18,7 @@ public:
     		f[0][i] = 0;
     	}
 
-    	for (int i = 1; i <= len; i++) {
+    	for (int i = 1; i < len + 1; i++) {
     		for (int j = 1; j < 101; j++) {
     			for (int k = j - target; k <= j + target; k++) {
     				if ( 1 <= k && k <= 100 ) {
@@ -26,7 +26,6 @@ public:
     						f[i][j] = f[i - 1][k] + abs(j - A[i - 1]);
     					}
     				}
-
     			}
     		}
     	}
