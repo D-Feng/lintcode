@@ -14,6 +14,7 @@ public:
         // replace: f[i][j] = f[i - 1]f[j - 1] + 1 
                     //f[i - 1][j - 1] if word1[i + 1] == word2[j + 1]
         // delele: f[i][j] = f[i - 1][j] + 1
+        // hint：当前状态的前一步是怎样的，怎样由前一步的状态转化为当前的状态
         int len_word1 = word1.size();
         int len_word2 = word2.size();
         vector<vector<int>> f(len_word1 + 1, vector<int>(len_word2 + 1, 0));
