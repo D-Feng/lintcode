@@ -24,11 +24,8 @@ public:
         for (int i = 1 ; i < len + 1; i++) {
             for (int j = 1; j <= i; j++) {
                 bool temp = f[i - j];
-                if (dict.find(s.substr(i - j, j)) == dict.end()) {
-                    temp = false;
-                }
-                f[i] = f[i] || temp;
-                if (f[i]) {
+                if (temp && dict.find(s.substr(i - j, j)) != dict.end()) {
+                    f[i] = true;
                     break;
                 }
             }
