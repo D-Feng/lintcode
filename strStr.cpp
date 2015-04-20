@@ -8,22 +8,21 @@ public:
      */
     int strStr(const char *source, const char *target) {
         // write your code here
-        string src(source);
-        string tar(target);
-        int len_s = src.size();
-        int len_t = tar.size();
-        if (len_s < len_t || len_s == 0 || len_t == 0) {
+        if(source == NULL || target == NULL) {
             return -1;
         }
-        
-        for (int i = 0; i < len_t - len_s + 1; i++) {
-            for (int j = 0; j < len_t; j++) {
-                if (src[i + j] != tar[j]) {
+            
+        string src(source);
+        string tar(target);
+        int i, j;
+        for(i = 0; i < src.length() - tar.length() + 1; i++ ) {
+            for(j = 0; j < tar.length(); j++) {
+                if(src[i+j] != tar[j]) {
                     break;
                 }
-                if (j == len_t - 1) {
-                    return j;
-                }
+            }
+            if(j == tar.length()) {
+                return i;
             }
         }
         
