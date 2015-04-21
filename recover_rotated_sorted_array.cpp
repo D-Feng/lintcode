@@ -2,32 +2,28 @@ class Solution {
 public:
     void recoverRotatedSortedArray(vector<int> &nums) {
         // write your code here
-        int len = nums.size();
-        if (len == 0) {
+        if (nums.size() <= 1) {
             return;
         }
-        int min_ind = 0;
-        for (int i = 0; i < len - 1; i++) {
+        
+        for (int i = 0; i < nums.size() - 1; i++) {
             if (nums[i] > nums[i + 1]) {
-                min_ind = i + 1;
+                reverse(nums, 0, i);
+                reverse(nums, i + 1, nums.size() - 1);
+                reverse(nums, 0, nums.size() - 1);
                 break;
             }
         }
-        if (min_ind = 0) {
-            return;
-        }
-        
-        for (int i = min_ind; i <= (min_ind + len - 1) / 2; i++) {
-            swap(nums[i], nums[len - 1 + min_ind - i]);
-        }
-        
-        for (int i = 0; i <= (len - 1) / 2; i++) {
-            swap(nums[i], nums[len - 1 - i]);
+    }
+    
+private:
+    void reverse(vector<int> &nums, int start, int end) {
+        int i, j;
+        for (i = start, j = end; i < j ; i++, j--) {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
         }
     }
-    void swap(int &a; int &b) {
-        int temp = a;
-        a = b;
-        b = temp;
-    }
+    
 };

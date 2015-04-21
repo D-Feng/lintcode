@@ -8,20 +8,19 @@ public:
      */
     int strStr(const char *source, const char *target) {
         // write your code here
-        if(source == NULL || target == NULL) {
+        if (source == NULL || target == NULL) {
             return -1;
         }
-            
         string src(source);
         string tar(target);
         int i, j;
-        for(i = 0; i < src.length() - tar.length() + 1; i++ ) {
-            for(j = 0; j < tar.length(); j++) {
-                if(src[i+j] != tar[j]) {
+        for (i = 0; i < src.length() - tar.length() + 1; i++) {
+            for (j = 0; j < tar.length(); j++) {
+                if (source[i + j] != tar[j]) {
                     break;
                 }
             }
-            if(j == tar.length()) {
+            if (j == tar.length()) {
                 return i;
             }
         }
