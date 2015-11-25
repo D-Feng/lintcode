@@ -26,4 +26,36 @@ public:
         
         return dp[len - 1];
     }
+
+
+
+    int jump_ii(vector<int> A) {
+        // wirte your code here
+        int farest = 0;
+        int current = 0;
+        int jump = 0;
+        
+        for (int i = 0; i < A.size() - 1; i++) {
+            
+            if (farest < i) return -1;
+            farest = A[i] + i > farest ? A[i] + i : farest;
+            
+            if (current == i) {
+                ++jump;
+                current = farest;
+            }
+            
+            if (farest >= A.size() -1) {
+                if (current < farest) {
+                    jump++;
+                }
+                return jump;
+            }
+        }
+        
+        if (farest >= A.size() - 1)
+            return jump;
+            
+        return -1;
+    }
 };
