@@ -7,33 +7,54 @@ public:
      */
     int threeSumClosest(vector<int> nums, int target) {
         // write your code here
-        
-        vector<int> path;
-        
-        return helper(nums, path, 0, target);
-        
-    }
-    
-    
-    
-    int helper(vector<int> &nums, vector<int> &path, int ind, int target) {
-        if (path.size() == 3) {
-            return accumulate(path.begin(), path.end(), 0);
+        if (nums.size() < 3) {
+            return -1;
         }
+        sort(nums.begin(), nums.end());
+        int result = nums[0] + nums[1] + nums[2];
+        int diff = abs(target - result);
         
-        int closest = INT_MAX;
+        for (int i = 0; i < nums.size() - 2; i++) {
+            int sum2 = twoSumClosest(nums, i + 1, target - nums[i]);
+            if (abs(target - sum2 - nums[i]) < diff) {
+                result = nums[i] + sum2;
+                diff = abs(target - sum2 - nums[i]);
+                if (diff == 0) {
+                    return result;
+                }
+            }
+        }
+        return result;
+    }
+
+
+    int twoSumClosest(vector<int> &nums, int start, int target) {
         
-        for (int i = ind; i < nums.size(); i++) {
-            path.push_back(nums[i]);
-            int temp = helper(nums, path, i + 1, target);
-            if (temp == target) {
+        int head = start;
+        int tail = nums.size() - 1;
+        int result = nums[start] + nums[start + 1];
+        int diff = abs(target - result);
+        
+        while(head < tail) {
+            int sum = nums[head] + nums[tail];
+            
+            if (sum < target) {
+                if (target - sum < diff) {
+                    diff = target - sum;
+                    result = sum;
+                }
+                head++;
+            } else if (sum > target) {
+                if (sum - target < diff) {
+                    diff = sum - target;
+                    result = sum;
+                }
+                tail--;
+                
+            } else {
                 return target;
             }
-            closest = abs(target - temp) < abs(target - closest) ? temp: closest;
-            path.pop_back();
-            
         }
-        
-        return closest;
+        return result;
     }
 };
