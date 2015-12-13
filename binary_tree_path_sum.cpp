@@ -40,19 +40,15 @@ public:
             if (sum == target) {
                 result.push_back(current);
             }
-            return;
         }
         
         if (node->left) {
             helper(result, node->left, current, sum, target);
-            current.pop_back();
-            
         }
         if (node->right) {
             helper(result, node->right, current, sum, target);
-            current.pop_back();
         }
-        
+        current.pop_back();
     }
     
 };
